@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Balloon Spy</string>
+    <string name="action_settings">Settings</string>
+    <string name="service_name">MyService</string>
+    <string name="notification_listener_service">"Notification Listener Service"</string>
+    <string name="notification_listener_service_explanation">"For the the app. to work you need to enable the Notification Listener Service. Enable it now?"</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+</resources>

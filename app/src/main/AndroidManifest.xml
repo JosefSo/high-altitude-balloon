@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ariel.balloonspy">
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+
+    <application
+        android:allowBackup="true"
+        android:exported="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:enabled="true"
+        android:persistent="true"
+        android:launchMode="singleTop"
+        android:excludeFromRecents="true"
+        android:name=".activity.SpyBalloonApp"
+        android:theme="@style/AppTheme">
+
+        <activity android:name=".activity.MainActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".activity.SettingActivity"
+            android:parentActivityName=".activity.SettingActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <receiver android:name="com.ariel.balloonspy.reciever.BootReciever">
+            <intent-filter >
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".service.MyService"
+            android:icon="@drawable/icon"
+            android:stopWithTask="false"
+            android:enabled="true"
+            android:label="MyService">
+        </service>
+
+        <service
+            android:name=".service.SoundMeterService"
+            android:icon="@drawable/icon"
+            android:label="SoundMeterService">
+        </service>
+
+        <service
+            android:name="com.ariel.balloonspy.service.SensorService"
+            android:enabled="true" >
+        </service>
+
+        <service
+            android:name=".activity.MyNotificationListenerService"
+            android:label="Notification Listener"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+        </service>
+
+        <receiver
+            android:name="com.ariel.balloonspy.reciever.SensorRestarterBroadcastReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:label="RestartServiceWhenStopped">
+        </receiver>
+
+    </application>
+
+</manifest>
